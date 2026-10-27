@@ -1,0 +1,577 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHAMPION | Class Group</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #0b1020;
+    color: white;
+    min-height: 100vh;
+}
+
+header {
+    background: #151d35;
+    padding: 20px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    border-bottom: 1px solid #34405e;
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: bold;
+    color: #ffd166;
+}
+
+.logo span {
+    color: #54e6c0;
+}
+
+select, button, input, textarea {
+    padding: 12px;
+    border-radius: 9px;
+    border: none;
+    font-size: 15px;
+}
+
+select {
+    background: #263351;
+    color: white;
+}
+
+.hero {
+    text-align: center;
+    padding: 75px 20px;
+    background: linear-gradient(135deg, #242a68, #111827, #174d54);
+}
+
+.hero h1 {
+    font-size: clamp(35px, 7vw, 65px);
+    margin-bottom: 18px;
+}
+
+.hero h1 span {
+    color: #ffd166;
+}
+
+.hero p {
+    color: #d4d9e8;
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+.btn {
+    background: #ffd166;
+    color: #141829;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    background: #ffe29a;
+}
+
+section {
+    padding: 35px 7%;
+}
+
+h2 {
+    margin-bottom: 22px;
+    color: #54e6c0;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 18px;
+}
+
+.card {
+    background: #151d35;
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid #2c3857;
+}
+
+.card h3 {
+    margin: 12px 0;
+    color: #ffd166;
+}
+
+.emoji {
+    font-size: 35px;
+}
+
+.card p {
+    color: #c7cfe0;
+    line-height: 1.6;
+}
+
+.wall {
+    max-width: 750px;
+    margin: auto;
+}
+
+textarea {
+    width: 100%;
+    margin: 10px 0;
+    background: #18213a;
+    color: white;
+    border: 1px solid #34405e;
+    resize: vertical;
+}
+
+.message {
+    background: #151d35;
+    padding: 16px;
+    border-radius: 10px;
+    margin-top: 12px;
+    overflow-wrap: anywhere;
+}
+
+.message small {
+    display: block;
+    margin-top: 8px;
+    color: #54e6c0;
+}
+
+input {
+    width: 100%;
+    margin: 8px 0;
+    background: #18213a;
+    color: white;
+    border: 1px solid #34405e;
+}
+
+footer {
+    text-align: center;
+    padding: 28px;
+    background: #151d35;
+    color: #b8c1d6;
+    margin-top: 30px;
+}
+
+.hidden {
+    display: none;
+}
+
+#notice {
+    margin-top: 12px;
+    color: #54e6c0;
+}
+
+@media (max-width: 600px) {
+    header {
+        padding: 18px;
+    }
+    section {
+        padding: 28px 18px;
+    }
+    .hero {
+        padding: 55px 18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">🏆 <span>CHAMPION</span></div>
+
+    <select id="language" aria-label="Choose language"
+            onchange="changeLanguage()">
+        <option value="en">English</option>
+        <option value="ur">اردو</option>
+        <option value="roman">Roman Urdu</option>
+    </select>
+</header>
+
+<div class="hero">
+    <h1 id="title">WELCOME TO <span>CHAMPION!</span> 🏆</h1>
+    <p id="subtitle">One Class. One Team. Unlimited Fun!</p>
+
+    <button class="btn" onclick="goTo('fun')"
+            id="funButton">Explore Fun Zone 🎉</button>
+
+    <button class="btn" onclick="goTo('wall')"
+            id="wallButton">Class Wall 💬</button>
+</div>
+
+<section>
+    <h2 id="aboutTitle">✨ Our Champion World</h2>
+
+    <div class="cards">
+        <div class="card">
+            <div class="emoji">👥</div>
+            <h3 id="teamTitle">Our Class</h3>
+            <p id="teamText">Friends, memories and teamwork!</p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">😂</div>
+            <h3 id="laughTitle">Fun & Jokes</h3>
+            <p id="laughText">Forget stress and enjoy class life.</p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">🔥</div>
+            <h3 id="challengeTitle">Daily Challenge</h3>
+            <p id="challengeText">Bring your best energy every day!</p>
+        </div>
+    </div>
+</section>
+
+<section id="fun">
+    <h2 id="funTitle">🎉 Champion Fun Zone</h2>
+
+    <div class="cards">
+        <div class="card">
+            <div class="emoji">🤣</div>
+            <h3 id="jokeTitle">Class Joke</h3>
+            <p id="jokeText">
+                Teacher: Why are you late?<br>
+                Student: Because the school bell rang before I arrived!
+            </p>
+            <br>
+            <button class="btn" onclick="nextJoke()" id="jokeButton">
+                Next Joke 😂
+            </button>
+        </div>
+
+        <div class="card">
+            <div class="emoji">🎯</div>
+            <h3 id="dailyTitle">Today's Challenge</h3>
+            <p id="dailyText">
+                Make one classmate laugh today!
+            </p>
+            <br>
+            <button class="btn" onclick="nextChallenge()" id="challengeButton">
+                New Challenge
+            </button>
+        </div>
+
+        <div class="card">
+            <div class="emoji">💎</div>
+            <h3 id="quoteTitle">Champion Quote</h3>
+            <p id="quoteText">
+                Great friends make ordinary days unforgettable.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section id="wall">
+    <div class="wall">
+        <h2 id="wallTitle">💬 Champion Class Wall</h2>
+        <p id="wallDesc">Share a funny moment or a friendly message!</p>
+
+        <input id="studentName" maxlength="35"
+               placeholder="Your name">
+
+        <textarea id="studentMessage" maxlength="500"
+                  rows="4" placeholder="Write your message here..."></textarea>
+
+        <button class="btn" onclick="postMessage()" id="postButton">
+            Post Message 🚀
+        </button>
+
+        <p id="notice" role="status" aria-live="polite"></p>
+
+        <div id="messages"></div>
+    </div>
+</section>
+
+<footer>
+    <p id="footerText">🏆 CHAMPION — Made for our class, with fun!</p>
+    <p>© <span id="year"></span> CHAMPION</p>
+</footer>
+
+<script>
+const translations = {
+    en: {
+        title: 'WELCOME TO <span>CHAMPION!</span> 🏆',
+        subtitle: 'One Class. One Team. Unlimited Fun!',
+        funButton: 'Explore Fun Zone 🎉',
+        wallButton: 'Class Wall 💬',
+        aboutTitle: '✨ Our Champion World',
+        teamTitle: 'Our Class',
+        teamText: 'Friends, memories and teamwork!',
+        laughTitle: 'Fun & Jokes',
+        laughText: 'Forget stress and enjoy class life.',
+        challengeTitle: 'Daily Challenge',
+        challengeText: 'Bring your best energy every day!',
+        funTitle: '🎉 Champion Fun Zone',
+        jokeTitle: 'Class Joke',
+        jokeButton: 'Next Joke 😂',
+        dailyTitle: "Today's Challenge",
+        challengeButton: 'New Challenge',
+        quoteTitle: 'Champion Quote',
+        wallTitle: '💬 Champion Class Wall',
+        wallDesc: 'Share a funny moment or a friendly message!',
+        namePlaceholder: 'Your name',
+        messagePlaceholder: 'Write your message here...',
+        postButton: 'Post Message 🚀',
+        footerText: '🏆 CHAMPION — Made for our class, with fun!',
+        success: 'Message posted!',
+        missing: 'Please enter your name and message.',
+        empty: 'No messages yet. Be the first!',
+        jokes: [
+            'Teacher: Why are you late? Student: Because the school bell rang before I arrived!',
+            'Teacher: Did you do your homework? Student: Yes, but my notebook is on vacation!',
+            'Teacher: Where is your book? Student: It is enjoying a holiday at home!'
+        ],
+        challenges: [
+            'Make one classmate laugh today!',
+            'Give three friends a genuine compliment!',
+            'Share a happy memory with your class!',
+            'Study for 15 minutes without touching your phone!'
+        ],
+        quotes: [
+            'Great friends make ordinary days unforgettable.',
+            'Together we learn, together we shine.',
+            'Small moments become the best memories.'
+        ]
+    },
+    ur: {
+        title: 'خوش آمدید <span>چیمپئن!</span> 🏆',
+        subtitle: 'ایک کلاس، ایک ٹیم، بے شمار خوشیاں!',
+        funButton: 'مزے کی دنیا دیکھیں 🎉',
+        wallButton: 'کلاس وال 💬',
+        aboutTitle: '✨ ہماری چیمپئن دنیا',
+        teamTitle: 'ہماری کلاس',
+        teamText: 'دوستی، یادیں اور مل کر کام کرنا!',
+        laughTitle: 'مزاح اور لطیفے',
+        laughText: 'پریشانی بھولیں اور کلاس کی زندگی سے لطف اٹھائیں۔',
+        challengeTitle: 'روزانہ چیلنج',
+        challengeText: 'ہر دن بھرپور جوش دکھائیں!',
+        funTitle: '🎉 چیمپئن تفریحی دنیا',
+        jokeTitle: 'کلاس کا لطیفہ',
+        jokeButton: 'اگلا لطیفہ 😂',
+        dailyTitle: 'آج کا چیلنج',
+        challengeButton: 'نیا چیلنج',
+        quoteTitle: 'چیمپئن قول',
+        wallTitle: '💬 چیمپئن کلاس وال',
+        wallDesc: 'کوئی مزاحیہ واقعہ یا دوستانہ پیغام شیئر کریں!',
+        namePlaceholder: 'آپ کا نام',
+        messagePlaceholder: 'اپنا پیغام یہاں لکھیں...',
+        postButton: 'پیغام پوسٹ کریں 🚀',
+        footerText: '🏆 چیمپئن — ہماری کلاس کے لیے، خوشیوں کے ساتھ!',
+        success: 'پیغام پوسٹ ہوگیا!',
+        missing: 'براہ کرم اپنا نام اور پیغام لکھیں۔',
+        empty: 'ابھی کوئی پیغام نہیں۔ پہلا پیغام آپ لکھیں!',
+        jokes: [
+            'استاد: دیر سے کیوں آئے؟ طالب علم: گھنٹی میرے پہنچنے سے پہلے بج گئی!',
+            'استاد: ہوم ورک کیا؟ طالب علم: جی، مگر کاپی چھٹیوں پر ہے!',
+            'استاد: کتاب کہاں ہے؟ طالب علم: گھر میں آرام کر رہی ہے!'
+        ],
+        challenges: [
+            'آج ایک کلاس فیلو کو ہنسائیں!',
+            'تین دوستوں کی سچی تعریف کریں!',
+            'اپنی کلاس کے ساتھ ایک خوشگوار یاد شیئر کریں!',
+            'پندرہ منٹ موبائل کے بغیر پڑھائی کریں!'
+        ],
+        quotes: [
+            'اچھے دوست عام دنوں کو یادگار بنا دیتے ہیں۔',
+            'مل کر سیکھیں، مل کر چمکیں۔',
+            'چھوٹے لمحے بہترین یادیں بن جاتے ہیں۔'
+        ]
+    },
+    roman: {
+        title: 'WELCOME TO <span>CHAMPION!</span> 🏆',
+        subtitle: 'Aik Class, Aik Team, Unlimited Fun!',
+        funButton: 'Fun Zone Dekho 🎉',
+        wallButton: 'Class Wall 💬',
+        aboutTitle: '✨ Hamari Champion Duniya',
+        teamTitle: 'Hamari Class',
+        teamText: 'Dosti, yaadein aur teamwork!',
+        laughTitle: 'Fun Aur Jokes',
+        laughText: 'Tension bhoolo aur class life enjoy karo.',
+        challengeTitle: 'Daily Challenge',
+        challengeText: 'Har din full energy dikhao!',
+        funTitle: '🎉 Champion Fun Zone',
+        jokeTitle: 'Class Joke',
+        jokeButton: 'Agla Joke 😂',
+        dailyTitle: 'Aaj Ka Challenge',
+        challengeButton: 'Naya Challenge',
+        quoteTitle: 'Champion Quote',
+        wallTitle: '💬 Champion Class Wall',
+        wallDesc: 'Koi funny moment ya friendly message share karo!',
+        namePlaceholder: 'Apna naam',
+        messagePlaceholder: 'Yahan apna message likho...',
+        postButton: 'Message Post Karo 🚀',
+        footerText: '🏆 CHAMPION — Hamari class ke liye, fun ke saath!',
+        success: 'Message post ho gaya!',
+        missing: 'Apna naam aur message likho.',
+        empty: 'Abhi koi message nahi. Pehla message tum karo!',
+        jokes: [
+            'Teacher: Late kyun ho? Student: Bell mere pohanchne se pehle baj gayi!',
+            'Teacher: Homework kiya? Student: Ji, lekin copy chhutti par hai!',
+            'Teacher: Book kahan hai? Student: Ghar par araam kar rahi hai!'
+        ],
+        challenges: [
+            'Aaj aik class fellow ko hansao!',
+            'Teen doston ki achi tareef karo!',
+            'Class ke saath aik happy memory share karo!',
+            '15 minute mobile ke baghair parhai karo!'
+        ],
+        quotes: [
+            'Achay dost aam dinon ko yaadgar bana dete hain.',
+            'Mil kar seekho, mil kar chamko.',
+            'Chhotay lamhay best yaadein ban jate hain.'
+        ]
+    }
+};
+
+let currentLanguage = 'en';
+let jokeIndex = 0;
+let challengeIndex = 0;
+let quoteIndex = 0;
+let messages = [];
+
+function changeLanguage() {
+    currentLanguage = document.getElementById('language').value;
+    const t = translations[currentLanguage];
+
+    Object.keys(t).forEach(key => {
+        const element = document.getElementById(key);
+        if (element && typeof t[key] === 'string') {
+            if (key === 'title') {
+                element.innerHTML = t[key];
+            } else {
+                element.textContent = t[key];
+            }
+        }
+    });
+
+    document.getElementById('studentName').placeholder =
+        t.namePlaceholder;
+    document.getElementById('studentMessage').placeholder =
+        t.messagePlaceholder;
+
+    document.documentElement.lang =
+        currentLanguage === 'ur' ? 'ur' : 'en';
+
+    document.documentElement.dir =
+        currentLanguage === 'ur' ? 'rtl' : 'ltr';
+
+    document.getElementById('jokeText').textContent =
+        t.jokes[jokeIndex % t.jokes.length];
+
+    document.getElementById('dailyText').textContent =
+        t.challenges[challengeIndex % t.challenges.length];
+
+    document.getElementById('quoteText').textContent =
+        t.quotes[quoteIndex % t.quotes.length];
+
+    renderMessages();
+}
+
+function nextJoke() {
+    jokeIndex++;
+    document.getElementById('jokeText').textContent =
+        translations[currentLanguage].jokes[
+            jokeIndex % translations[currentLanguage].jokes.length
+        ];
+}
+
+function nextChallenge() {
+    challengeIndex++;
+    document.getElementById('dailyText').textContent =
+        translations[currentLanguage].challenges[
+            challengeIndex % translations[currentLanguage].challenges.length
+        ];
+}
+
+function nextQuote() {
+    quoteIndex++;
+    document.getElementById('quoteText').textContent =
+        translations[currentLanguage].quotes[
+            quoteIndex % translations[currentLanguage].quotes.length
+        ];
+}
+
+function goTo(id) {
+    document.getElementById(id).scrollIntoView({
+        behavior: 'smooth'
+    });
+}
+
+function postMessage() {
+    const name = document.getElementById('studentName').value.trim();
+    const message = document.getElementById('studentMessage').value.trim();
+    const t = translations[currentLanguage];
+
+    if (!name || !message) {
+        document.getElementById('notice').textContent = t.missing;
+        return;
+    }
+
+    messages.unshift({
+        name: name,
+        text: message,
+        time: new Date().toLocaleString()
+    });
+
+    document.getElementById('studentMessage').value = '';
+    document.getElementById('notice').textContent = t.success;
+
+    renderMessages();
+}
+
+function renderMessages() {
+    const area = document.getElementById('messages');
+    area.replaceChildren();
+
+    if (messages.length === 0) {
+        const empty = document.createElement('p');
+        empty.className = 'message';
+        empty.textContent = translations[currentLanguage].empty;
+        area.appendChild(empty);
+        return;
+    }
+
+    messages.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'message';
+
+        const heading = document.createElement('strong');
+        heading.textContent = '👤 ' + item.name;
+
+        const body = document.createElement('p');
+        body.style.marginTop = '10px';
+        body.textContent = item.text;
+
+        const time = document.createElement('small');
+        time.textContent = item.time;
+
+        card.append(heading, body, time);
+        area.appendChild(card);
+    });
+}
+
+document.getElementById('year').textContent =
+    new Date().getFullYear();
+
+renderMessages();
+</script>
+
+</body>
+</html>
